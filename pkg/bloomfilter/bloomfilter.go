@@ -36,7 +36,7 @@ func calculateNumberOfHashFunctions(numBits uint64, capacity uint64) uint64 {
 }
 
 // NewBloomFilter creates a new optimised BloomFilter for a given number of items and error rate
-func NewBloomFilter(capacity uint64, errRate float64) *BloomFilter {
+func New(capacity uint64, errRate float64) *BloomFilter {
 	numBits := calculateNumberOfBits(capacity, errRate)
 	numHashFunctions := calculateNumberOfHashFunctions(numBits, capacity)
 	return &BloomFilter{

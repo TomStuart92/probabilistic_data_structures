@@ -16,7 +16,7 @@ func randStr(len int) string {
 func TestFalseNegatives(t *testing.T) {
 	var capacity uint64 = 1000
 	errRate := 0.001
-	bloomFilter := NewBloomFilter(capacity, errRate)
+	bloomFilter := New(capacity, errRate)
 	bloomFilter.Add("test")
 	if !bloomFilter.MayContain("test") {
 		t.Errorf("Expected BloomFilter to not give False Negatives.")
@@ -26,7 +26,7 @@ func TestFalseNegatives(t *testing.T) {
 func TestFalsePositive(t *testing.T) {
 	var capacity uint64 = 1000
 	errRate := 0.001
-	bloomFilter := NewBloomFilter(capacity, errRate)
+	bloomFilter := New(capacity, errRate)
 	if bloomFilter.MayContain("test") {
 		t.Errorf("Expected BloomFilter to not give False Positives.")
 	}
@@ -35,7 +35,7 @@ func TestFalsePositive(t *testing.T) {
 func TestProbabilitsticFalsePositive(t *testing.T) {
 	var capacity uint64 = 1000
 	errRate := 0.1
-	bloomFilter := NewBloomFilter(capacity, errRate)
+	bloomFilter := New(capacity, errRate)
 	flag := true
 	count := 0.0
 	for flag {

@@ -5,14 +5,11 @@ In computing, the count–min sketch (CM sketch) is a probabilistic data structu
 ## API
 
 ```go
-capacity := 1000  // total data set size
-errRate := 0.001  // acceptable error rate i.e. we should have no more than 0.1% false positive matches
-
-bloomFilter := NewBloomFilter(capacity, errRate)
-bloomFilter.add("test");
-bloomFilter.mayContain("test")  // true (hopefully)
+c, err := NewWithEstimates(0.0001, 0.9999)
+c.UpdateString("test", 1)
+c.EstimateString("test")
 ```
 
 ## Dependencies
 
-We use the murmur3 hashing algorithm (https://github.com/spaolacci/murmur3) and the bitset library (https://github.com/willf/bitset) to track flipped bits.
+We use the murmur3 hashing algorithm (https://github.com/spaolacci/murmur3).
